@@ -56,12 +56,35 @@ class Matrix
   def to_s = "(#{x}, #{y})"
 
     def +(other)
-      Matrix.new(x + other, y + other.y)
+      Matrix.new(x + other.x, y + other.y)
     end
 end
 
- first = Matrix.new(1, 2)
- second = Matrix.new(3, 4)
+first = Matrix.new(1, 2)
+second = Matrix.new(3, 4)
 
- puts first + second
+puts first + second
+
+ # Method Receiver
+ # There are instance method definition, which adds the method to the class it's defined within and makes the method available to instances of that class. But Ruby also allows to define methods for one specific object rathen that the current class. Therefore we can assign methods to the class itself rathen than to the instances of the class by using the self keyword. E.g:
  
+class Computer
+  def self.function
+    "I'm afraid I can't do that"
+  end
+end
+
+puts Computer.function # => "I'm afraid I can't do that"
+
+# self means "The class this method is being declared inside", in this case Computer.
+
+class Computer
+end
+
+mac = Computer.new
+pc = Computer.new
+
+def mac.introduction = "I'm a Mac"
+def pc.introduction = "I'm a PC"
+puts mac.introduction
+puts pc.introduction
