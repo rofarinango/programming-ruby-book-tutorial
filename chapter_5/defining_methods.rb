@@ -88,3 +88,33 @@ def mac.introduction = "I'm a Mac"
 def pc.introduction = "I'm a PC"
 puts mac.introduction
 puts pc.introduction
+
+
+# Method Parameters
+
+def my_new_method(arg1, arg2, arg3)   # 3 parameters
+  # Code for the method would go here
+end
+
+def my_other_new_method               # No parameters
+  # Code for the method would go here
+end
+
+# To defined default values for a method's parameters, meaning this values will be used if the caller doesn't explicitly assing a value to the parameter. You can do this by using the sign equal(=) followed by a Ruby expression.
+
+def cool_dude(arg1="Miles", arg2="Coltrane", arg3="Roach")
+  "#{arg1}, #{arg2}, #{arg3}."
+end
+
+cool_dude
+cool_dude("Bart")
+cool_dude("Bart", "Elwood")
+cool_dude("Bart", "Elwood", "Linus")
+
+def surround(word, pad_width=word.length/2)
+  "[" * pad_width + word + "]" * pad_width
+end
+
+puts surround("elephant")
+puts surround("fox")
+puts surround("fox", 10)
