@@ -23,3 +23,23 @@ class InvoiceWriter
   end
 end
 
+# When you call a method, you can convert any collection, enumerable oject, or object that implements to_a into its constituent elements and pass those elements as individual arguments to the method.
+
+def five(a, b, c, d, e)
+  "I was passed #{a} #{b} #{c} #{d} #{e}"
+end
+
+puts five(1, 2, 3, 4, 5)
+puts five(1, 2, 3, *['a', 'b'])
+puts five(*['a', 'b'], 1, 2, 3)
+puts five(*(10..14))
+puts five(*[1, 2], 3, *(4..5))
+
+# You can expand hashes, or anything that implements to_h, into keyword arguments by prefixing the argument with a double-splat:
+
+def method_with_keywords(city:, state:, zip:)
+  "I live in #{city}, #{state}, #{zip}"
+end
+
+data = {city: "Chicago", state: "IL", zip: "60606"}
+puts method_with_keywords(**data)
