@@ -43,3 +43,34 @@ end
 
 data = {city: "Chicago", state: "IL", zip: "60606"}
 puts method_with_keywords(**data)
+
+# Passing Block Arguments
+# An & in a parameter list converts a block argument into a Proc object. You can do this in reverse by passing a Proc object, or anything that implements the method to_proc, and prefixing it with an & to convert it to a block argument.
+# E.g: use of objects that implement to_proc is Symbol. The following two lines of code behave identically:
+
+puts ["a", "b", "c"].map { |s| s.upcase }
+puts ["a", "b", "c"].map(&:upcase)
+
+# You'll frequently see this syntax as a shortcut for methods that take simple blocks like map or sort_by
+
+print "(t)imes or (p)lus:"
+operator = gets
+print "number: "
+number = Integer(gets)
+
+if operator.start_with?("t")
+  calc = -> (n) { n * number }
+else
+  calc = -> (n) { n + number }
+end
+
+puts((1..10).map(&calc).join(", "))
+
+# shorter version
+
+print "(t)imes or (p)lus:"
+operator = gets
+print "number: "
+number = Integer(gets)
+method = number.method(operator.start_with?("t") ? :* : :+)
+puts((1..10).map(&method).join(", "))
