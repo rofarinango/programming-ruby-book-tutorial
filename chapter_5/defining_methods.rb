@@ -118,3 +118,38 @@ end
 puts surround("elephant")
 puts surround("fox")
 puts surround("fox", 10)
+
+# Variable-Length Parameter Lists
+# Use the * key to pass in a variable number of parameters or capture multiple arguments into a single parameter. E.g:
+
+def variable_args(arg1, *rest)
+  "arg1=#{arg1} -- rest=#{rest.inspect}"
+end
+
+puts variable_args("one")
+puts variable_args("one", "two")
+puts variable_args("one", "two", "three")
+
+# E.g of anonymous splat parameter to another method without giving it a name
+
+class Example
+  def method_1(*)
+    method_2(*)
+  end
+
+  def method_2(*array_args)
+    puts array_args.join("- ")
+  end
+end
+
+puts Example.new.method_1("a","b","c")
+
+# You cant put the splat parameter anywhere in the method's parameter list.
+
+def split_apart(first, *splat, last)
+  puts "First: #{first.inspect}, splat: #{splat.inspect}, " + "last: #{last.inspect}"
+end
+
+split_apart(1,2)
+split_apart(1,2,3)
+split_apart(1,2,3,4)
