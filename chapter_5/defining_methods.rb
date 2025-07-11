@@ -153,3 +153,28 @@ end
 split_apart(1,2)
 split_apart(1,2,3)
 split_apart(1,2,3,4)
+
+# Hash and Keyword Parameters
+# Ruby lets you define parameters to methods using jkeyawrods as long as the arguments will be passed using the same keyword. e.g:
+
+def method_with_keywords(city:, state: , zip:)
+  puts "#{city} - #{state} - #{zip}"
+
+end
+
+method_with_keywords(city: "Chicago", state: "IL", zip: "60606")
+
+def method_with_keywords(city:, state: "FL" , zip:)
+  puts "#{city} - #{state} - #{zip}"
+
+end
+
+method_with_keywords(city: "Chicago", zip: "60606")
+
+def varargs(arg1, **rest)
+  "arg1=#{arg1}.  rest=#{rest.inspect}"
+end
+
+puts varargs("one")
+puts varargs("one", color: "red")
+puts varargs "one", color: "red", size: "xl"
